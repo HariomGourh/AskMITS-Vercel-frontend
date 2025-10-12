@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AskMITS — Virtual Assistant</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="light">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="mits-logo.png" alt="MITS Logo" class="nav-logo">
+      <span class="nav-title">AskMITS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#" class="active">Home</a></li>
+      <li><a href="developer.html">Developer</a></li>
+      <li><a href="#">Docs</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="themeToggle" title="Toggle theme">🌙</button>
+      <button class="btn-sign">Sign In</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+    <!-- Chat area -->
+    <section class="chat-panel">
+      <div class="chat-header">
+        <h2>Hello! I'm AskMITS</h2>
+        <p>Ask anything about MITS admissions, courses, placements, campus life & more.</p>
+      </div>
+
+      <div id="messages" class="messages">
+        <div class="msg bot">
+          <div class="bubble">👋 Welcome to AskMITS! How can I help you today?</div>
+        </div>
+      </div>
+
+      <div class="composer">
+        <input id="userInput" type="text" placeholder="Ask about MITS (e.g., fee structure, hostel)…">
+        <button id="sendBtn" class="primary" onclick="sendMessage()">Send</button>
+      </div>
+
+      <div class="quick-actions">
+        <button class="chip" data-q="admission procedure">Admission</button>
+        <button class="chip" data-q="btech fee structure">Fee Structure</button>
+        <button class="chip" data-q="placement statistics">Placements</button>
+        <button class="chip" data-q="library timing">Library</button>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL -->
+    <aside class="rightpanel">
+      <div class="card">
+        <h4>Quick Resources</h4>
+        <ul class="links">
+          <li><a href="https://mitstudy.mitsgwalior.in/" target="_blank">MITStudy (Notes)</a></li>
+          <li><a href="https://web.mitsgwalior.in/" target="_blank">MITS Official Site</a></li>
+          <li><a href="https://ams.mitsgwalior.in/" target="_blank">AMS Dashboard</a></li>
+        </ul>
+      </div>
+      <div class="card">
+        <h4>Contact</h4>
+        <p>Registrar: registrar@mitsgwalior.in</p>
+        <p>Placement: placements@mitsgwalior.in</p>
+      </div>
+    </aside>
+  </div>
+
+  <!-- SCRIPT -->
+  <script>
+    // 🌙 Theme toggle
+    const themeBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+      themeBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+
+    // Chatbot logic
+    const messages = document.getElementById('messages');
+    const userInput = document.getElementById('userInput');
+    const sendBtn = document.getElementById('sendBtn');
+
+    function appendMessage(text, who = 'bot') {
+      const wrap = document.createElement('div');
+      wrap.className = `msg ${who}`;
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.innerText = text;
+      wrap.appendChild(bubble);
+      messages.appendChild(wrap);
+      messages.scrollTop = messages.scrollHeight;
+    }
+
+    function appendTyping() {
+      const t = document.createElement('div');
+      t.className = 'msg bot typing';
+      t.innerHTML = '<div class="bubble">Typing<span class="dots">...</span></div>';
+      messages.appendChild(t);
+      messages.scrollTop = messages.scrollHeight;
+      return t;
+    }
+
+    async function sendMessage() {
+      const q = userInput.value.trim();
+      if (!q) return;
+
+      appendMessage(q, 'user');
+      userInput.value = '';
+
+      const typingNode = appendTyping();
+
+      try {
+        const res = await fetch("http://127.0.0.1:5000/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ question: q })
+        });
+
+        const data = res.ok ? await res.json() : { answer: '⚠️ Server error: ' + res.status };
+        typingNode.remove();
+        appendMessage(data.answer || 'Sorry, I don’t have that information yet.');
+      } catch (err) {
+        typingNode.remove();
+        appendMessage('🚫 Network error. Make sure Flask is running.');
+        console.error(err);
+      }
+    }
+
+    // Send on click or Enter
+    sendBtn.addEventListener('click', sendMessage);
+    userInput.addEventListener('keydown', e => {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    // Quick action chips
+    document.querySelectorAll('.chip').forEach(chip =>
+      chip.addEventListener('click', () => {
+        userInput.value = chip.dataset.q;
+        sendMessage();
+      })
+    );
+  </script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the Developers — AskMITS</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    integrity="sha512-yH1YxM2sYfY0YJ9zK9SxTrWv8k8W1y5pDjO2nXoB6pB2QjFMW7Az8B3bWvXFXIyycX6qH4nVgr9u1I5Fv9B+3g=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+
+</head>
+<body class="light">
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="mits-logo.png" alt="MITS Logo" class="nav-logo">
+      <span class="nav-title">AskMITS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="developer.html" class="active">Developer</a></li>
+      <li><a href="#">Docs</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="themeToggle" title="Toggle theme">🌙</button>
+      <button class="btn-sign">Sign In</button>
+    </div>
+  </nav>
+
+  <!-- MAIN CONTENT -->
+  <section class="developer-section">
+    <h1>Meet the Developers</h1>
+    <p class="intro">
+      Passionate about crafting intelligent web solutions and leveraging AI technologies 
+      to solve real-world challenges with innovation.
+    </p>
+
+    <div class="developer-cards">
+
+      <!-- Hariom Gourh -->
+      <div class="dev-card">
+        <img src="Hariom Gourh.jpg" alt="Hariom Gourh">
+        <h2>Hariom Gourh</h2>
+        <p class="role">Backend Developer | AI Enthusiast</p>
+        <div class="social-links">
+          <a href="mailto:hariomgourh02@gmail.com">📧 hariomgourh02@gmail.com</a>
+          <a href="https://github.com/HariomGourh" target="_blank">🐙 GitHub</a>
+          <a href="https://www.linkedin.com/in/hariomgourh/" target="_blank">💼 LinkedIn</a>
+        </div>
+      </div>
+
+      <!-- Kshitij Kumar Soni -->
+      <div class="dev-card">
+        <img src="Kshitij.jpeg" alt="Kshitij Kumar Soni">
+        <h2>Kshitij Kumar Soni</h2>
+        <p class="role">Frontend Developer | ML Enthusiast</p>
+        <div class="social-links">
+          <a href="mailto:kshitijksoni@gmail.com">📧 Email</a>
+          <a href="https://github.com/kshitijsoni" target="_blank">🐙 GitHub</a>
+          <a href="https://www.linkedin.com/in/kshitijksoni/" target="_blank">💼 LinkedIn</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <script>
+    // Theme toggle like on home page
+    const themeBtn = document.getElementById('themeToggle');
+    const body = document.body;
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+      themeBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+    });
+  </script>
+</body>
+</html>
