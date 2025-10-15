@@ -11,8 +11,8 @@ env/
 
 # Dataset / large files
 dataset/
-*.csv
-*.json
+# *.csv
+# *.json
 
 # Logs
 *.log
