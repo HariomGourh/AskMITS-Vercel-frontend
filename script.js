@@ -19,7 +19,7 @@ async function sendMsg() {
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
 
   try {
-    const res = await fetch("http://127.0.0.1:5000/ask", {
+    const res = await fetch("https://askmits-vercel-backend.onrender.com/ask",{
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ question: message }),
@@ -31,7 +31,7 @@ async function sendMsg() {
     }
 
     const data = await res.json();
-    typingMsg.textContent = data.answer || "Sorry, I don’t have that info yet.";
+    typingMsg.textContent = data.answer || "Sorry, I don't have that info yet.";
   } catch (err) {
     typingMsg.textContent = "🚫 Network error. Is Flask running?";
     console.error("Error:", err);

@@ -1,0 +1,30 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# Virtual environment
+venv/
+env/
+
+# Environment variables / secrets
+.env
+
+# Dataset / large files
+dataset/
+*.csv
+*.json
+
+# Logs
+*.log
+
+# IDE / editor settings
+.vscode/
+*.idea/
+
+# MacOS / system files
+.DS_Store
+Thumbs.db
+
+# Node / frontend (agar node modules use ho)
+node_modules/
+dist/
