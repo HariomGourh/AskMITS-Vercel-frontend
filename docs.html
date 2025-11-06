@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docs | AskMITS</title>
+  <link rel="icon" type="image/png" href="mits-logo.png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e8f1c6a4.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+  <!-- Navbar (same as index) -->
+  <nav class="navbar">
+    <div class="nav-left">
+      <img src="mits-logo.png" alt="MITS Logo" class="nav-logo">
+      <span class="nav-title">AskMITS</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="developer.html">Developer</a></li>
+      <li><a href="docs.html" class="active">Docs</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button id="themeToggle" title="Toggle theme">🌙</button>
+      <button class="btn-sign">Sign In</button>
+    </div>
+  </nav>
+
+  <!-- Docs Header -->
+  <section class="docs-header">
+    <h1>📘 AskMITS Documentation</h1>
+    <p>Learn how to use the official virtual assistant of Madhav Institute of Technology & Science.</p>
+  </section>
+
+  <!-- Docs Content -->
+  <section class="docs-content">
+
+    <div class="doc-section fade-up">
+      <h2><i class="fa-solid fa-lightbulb"></i> Overview</h2>
+      <p><strong>AskMITS</strong> is an AI-powered chatbot built exclusively for MITS students and visitors.  
+      It provides instant answers to common queries like admissions, placements, exams, events, and more.  
+      Developed by B.Tech CSE students to assist campus digitalization efforts.</p>
+    </div>
+
+    <div class="doc-section fade-up">
+      <h2><i class="fa-solid fa-graduation-cap"></i> How to Use AskMITS</h2>
+      <ul class="doc-list">
+        <li>💬 Type your question in the chat input box.</li>
+        <li>🚀 Click the <strong>Send</strong> button or press <strong>Enter</strong>.</li>
+        <li>🤖 Wait for AskMITS to reply with accurate MITS-related info.</li>
+        <li>📚 Use the “Quick Actions” chips for common queries.</li>
+      </ul>
+    </div>
+
+    <div class="doc-section fade-up">
+      <h2><i class="fa-solid fa-layer-group"></i> Supported Topics</h2>
+      <div class="topics-grid">
+        <div class="topic-card">🎓 Admissions</div>
+        <div class="topic-card">🏠 Hostels</div>
+        <div class="topic-card">📖 Library</div>
+        <div class="topic-card">💼 Placements</div>
+        <div class="topic-card">🧾 Exams</div>
+        <div class="topic-card">🏫 Departments</div>
+        <div class="topic-card">🕓 Timings</div>
+        <div class="topic-card">📅 Events</div>
+      </div>
+    </div>
+
+    <div class="doc-section fade-up">
+      <h2><i class="fa-solid fa-circle-question"></i> Troubleshooting & Feedback</h2>
+      <p>If AskMITS gives incorrect or incomplete information, please report it via our <a href="contact.html">Contact Page</a>.  
+      Your feedback helps us improve the chatbot’s accuracy and responses.</p>
+    </div>
+
+  </section>
+
+  <footer>
+    <p>© 2025 AskMITS | Developed with ❤️ by Team AskMITS</p>
+  </footer>
+
+  <script>
+    const fadeElements = document.querySelectorAll('.fade-up');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    });
+    fadeElements.forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
