@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AskMITS — Virtual Assistant</title>
-  <link rel="icon" type="image/png" href="mits-logo.png">
+  <link href="mits-logo.png" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -36,15 +36,15 @@
         <p>Ask anything about MITS admissions, courses, placements, campus life & more.</p>
       </div>
 
-      <div id="messages" class="messages">
+  <div id="messages" class="messages" role="log" aria-live="polite">
         <div class="msg bot">
           <div class="bubble">👋 Welcome to AskMITS! How can I help you today?</div>
         </div>
       </div>
 
       <div class="composer">
-        <input id="userInput" type="text" placeholder="Ask about MITS (e.g., fee structure, hostel)…">
-        <button id="sendBtn" class="primary" onclick="sendMessage()">Send</button>
+        <input id="userInput" type="text" placeholder="Ask about MITS (e.g., fee structure, hostel)…" aria-label="Ask a question about MITS">
+        <button id="sendBtn" class="primary">Send</button>
       </div>
 
       <div class="quick-actions">
@@ -71,20 +71,89 @@
         <h4>Contact</h4>
         <p>Registrar: registrar@mitsgwalior.in</p>
         <p>Placement: placements@mitsgwalior.in</p>
-      </div>
+      </div> -->
     </aside>
-  </div> -->
+  </div>
+
+  <!-- Supabase public config: replace with your actual project values -->
+  <script>
+    window.SUPABASE_URL = "https://isykuvkcmuvflidclnza.supabase.co"; // TODO: replace
+    window.SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlzeWt1dmtjbXV2ZmxpZGNsbnphIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjI0OTk2NDcsImV4cCI6MjA3ODA3NTY0N30.JY2rtX5uAjY-ve9f8gOo95lNKlsaxzawoatHg5kO5K4"; // TODO: replace
+  </script>
+
+  <!-- Supabase JS (CDN) for static hosting -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    // Initialize Supabase client from window-config for static hosting
+    window.supabaseClient = window.supabase.createClient(window.SUPABASE_URL, window.SUPABASE_ANON_KEY, {
+      auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+    });
+
+    // Wire up the existing Sign In button for a quick test flow
+    window.addEventListener('DOMContentLoaded', () => {
+      const btn = document.querySelector('.btn-sign');
+      if (!btn) return;
+
+      async function refreshAuthUI() {
+        const { data } = await window.supabaseClient.auth.getUser();
+        if (data && data.user) {
+          btn.textContent = 'Sign Out';
+          btn.onclick = async () => {
+            await window.supabaseClient.auth.signOut();
+            btn.textContent = 'Sign In';
+            btn.onclick = handleSignIn;
+            alert('Signed out');
+          };
+        } else {
+          btn.textContent = 'Sign In';
+          btn.onclick = handleSignIn;
+        }
+      }
+
+      async function handleSignIn() {
+        try {
+          const { error } = await window.supabaseClient.auth.signInWithOAuth({
+            provider: 'google',
+            options: {
+              redirectTo: window.location.origin,
+              queryParams: { hd: 'mitsgwl.ac.in' }
+            }
+          });
+          if (error) alert(error.message);
+        } catch (e) {
+          console.error(e);
+          alert('Google sign-in failed');
+        }
+      }
+
+      // Enforce domain restriction after OAuth completes
+      window.supabaseClient.auth.onAuthStateChange(async (_event, session) => {
+        const email = session?.user?.email || '';
+        if (email && !email.endsWith('@mitsgwl.ac.in')) {
+          alert('Only @mitsgwl.ac.in emails are allowed!');
+          await window.supabaseClient.auth.signOut();
+          await refreshAuthUI();
+        } else {
+          await refreshAuthUI();
+        }
+      });
+
+      refreshAuthUI();
+    });
+  </script>
 
   <!-- SCRIPT -->
   <script>
     // 🌙 Theme toggle
     const themeBtn = document.getElementById('themeToggle');
     const body = document.body;
-    themeBtn.addEventListener('click', () => {
-      body.classList.toggle('dark');
-      body.classList.toggle('light');
-      themeBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
-    });
+    if (themeBtn) {
+      themeBtn.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        body.classList.toggle('light');
+        themeBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+      });
+    }
 
     // Chatbot logic
     const messages = document.getElementById('messages');
@@ -96,7 +165,7 @@
       wrap.className = `msg ${who}`;
       const bubble = document.createElement('div');
       bubble.className = 'bubble';
-      bubble.innerText = text;
+      bubble.textContent = text;
       wrap.appendChild(bubble);
       messages.appendChild(wrap);
       messages.scrollTop = messages.scrollHeight;
@@ -105,18 +174,32 @@
     function appendTyping() {
       const t = document.createElement('div');
       t.className = 'msg bot typing';
-      t.innerHTML = '<div class="bubble">Typing<span class="dots">...</span></div>';
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = 'Typing';
+      const dots = document.createElement('span');
+      dots.className = 'dots';
+      dots.textContent = '...';
+      bubble.appendChild(dots);
+      t.appendChild(bubble);
       messages.appendChild(t);
       messages.scrollTop = messages.scrollHeight;
       return t;
     }
 
+    // Prevent duplicate submits while a request is in flight
+    let requestInFlight = false;
+
     async function sendMessage() {
+      if (requestInFlight) return;
       const q = userInput.value.trim();
       if (!q) return;
 
+      requestInFlight = true;
       appendMessage(q, 'user');
       userInput.value = '';
+      sendBtn.disabled = true;
+      userInput.disabled = true;
 
       const typingNode = appendTyping();
 
@@ -134,19 +217,28 @@
         typingNode.remove();
         appendMessage('🚫 Network error. Make sure Flask is running.');
         console.error(err);
+      } finally {
+        requestInFlight = false;
+        sendBtn.disabled = false;
+        userInput.disabled = false;
+        userInput.focus();
       }
     }
 
-    // Send on click or Enter
+    // Send on click or Enter (Enter without Shift)
     sendBtn.addEventListener('click', sendMessage);
     userInput.addEventListener('keydown', e => {
-      if (e.key === 'Enter') sendMessage();
+      if (e.key === 'Enter' && !e.shiftKey) {
+        e.preventDefault();
+        sendMessage();
+      }
     });
 
-    // Quick action chips
+    // Quick action chips (delegation-safe)
     document.querySelectorAll('.chip').forEach(chip =>
       chip.addEventListener('click', () => {
-        userInput.value = chip.dataset.q;
+        userInput.value = chip.dataset.q || '';
+        userInput.focus();
         sendMessage();
       })
     );
