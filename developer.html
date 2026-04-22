@@ -4,87 +4,172 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Meet the Developers — AskMITS</title>
+  <meta name="description" content="Meet the passionate developers behind AskMITS AI — your intelligent MITS campus assistant.">
   <link rel="icon" type="image/png" href="mits-logo.png">
-  <link rel="stylesheet" href="style.css">
-
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    integrity="sha512-yH1YxM2sYfY0YJ9zK9SxTrWv8k8W1y5pDjO2nXoB6pB2QjFMW7Az8B3bWvXFXIyycX6qH4nVgr9u1I5Fv9B+3g=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-
-
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=2.5">
 </head>
 <body class="light">
 
+  <!-- Background blobs -->
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
   <!-- NAVBAR -->
-  <nav class="navbar">
+  <nav class="navbar" id="mainNav">
     <div class="nav-left">
       <img src="mits-logo.png" alt="MITS Logo" class="nav-logo">
       <span class="nav-title">AskMITS</span>
     </div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="developer.html" class="active">Developer</a></li>
-      <li><a href="docs.html">Docs</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <div class="nav-center">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="developer.html" class="active">Developer</a></li>
+        <li><a href="docs.html">Docs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
     <div class="nav-actions">
-      <button id="themeToggle" title="Toggle theme">🌙</button>
+      <button id="themeToggle" class="icon-btn" title="Toggle theme">
+        <i class="ph ph-moon"></i>
+      </button>
       <button class="btn-sign">Sign In</button>
     </div>
   </nav>
 
-  <!-- MAIN CONTENT -->
-  <section class="developer-section">
-    <h1>Meet the Developers</h1>
-    <p class="intro">
-      Passionate about crafting intelligent web solutions and leveraging AI technologies 
-      to solve real-world challenges with innovation.
+  <!-- HERO HEADER -->
+  <section class="dev-page-header">
+    <div class="dev-page-badge"><i class="ph ph-code"></i> The Team</div>
+    <h1 class="dev-page-title">Meet the <span>Developers</span> <i class="ph ph-sparkle title-icon"></i></h1>
+    <p class="dev-page-subtitle">
+      Passionate engineers building AskMITS — your intelligent AI campus companion driven by modern web tech and machine learning.
     </p>
+  </section>
 
-    <div class="developer-cards">
+  <!-- DEVELOPER CARDS -->
+  <section class="dev-cards-section">
+    <div class="dev-cards-grid">
 
-      <!-- Hariom Gourh -->
+      <!-- Card 1: Hariom Gourh -->
       <div class="dev-card">
-        <img src="Hariom Gourh.jpg" alt="Hariom Gourh">
-        <h2>Hariom Gourh</h2>
-        <p class="role">Backend Developer | AI Enthusiast</p>
-        <div class="social-links">
-          <a href="mailto:hariomgourh02@gmail.com">📧 hariomgourh02@gmail.com</a>
-          <a href="https://github.com/HariomGourh" target="_blank">🐙 GitHub</a>
-          <a href="https://www.linkedin.com/in/hariomgourh/" target="_blank">💼 LinkedIn</a>
+        <div class="dev-card-glow"></div>
+        <div class="dev-avatar-wrapper">
+          <img src="Hariom Gourh.jpg" alt="Hariom Gourh" class="dev-avatar">
+          <span class="dev-status-dot"></span>
+        </div>
+        <div class="dev-card-body">
+          <div class="dev-role-badge">Backend Developer</div>
+          <h2 class="dev-name">Hariom Gourh</h2>
+          <p class="dev-desc">
+            Building the AI backbone of AskMITS — from Python APIs to NLP pipelines. Passionate about making intelligent systems that genuinely help people.
+          </p>
+          <div class="dev-skills-section">
+            <h4 class="dev-skills-title">Skills</h4>
+            <div class="dev-tags">
+              <span class="dev-tag">Python</span>
+              <span class="dev-tag">AI/ML</span>
+              <span class="dev-tag">Flask</span>
+              <span class="dev-tag">SQL</span>
+            </div>
+          </div>
+          <div class="dev-social-links">
+            <a href="https://github.com/HariomGourh" target="_blank" class="social-btn github-btn" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/hariomgourh/" target="_blank" class="social-btn linkedin-btn" title="LinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:hariomgourh489@gmail.com" class="social-btn email-btn" title="Email">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Email</span>
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- Kshitij Kumar Soni -->
+      <!-- Card 2: Kshitij Kumar Soni -->
       <div class="dev-card">
-        <img src="Kshitij.jpeg" alt="Kshitij Kumar Soni">
-        <h2>Kshitij Kumar Soni</h2>
-        <p class="role">Frontend Developer | ML Enthusiast</p>
-        <div class="social-links">
-          <a href="mailto:kshitijksoni@gmail.com">📧 kshitijkumarsoni30@gmail.com</a>
-          <a href="https://github.com/kshitijsoni" target="_blank">🐙 GitHub</a>
-          <a href="https://www.linkedin.com/in/kshitijksoni/" target="_blank">💼 LinkedIn</a>
+        <div class="dev-card-glow"></div>
+        <div class="dev-avatar-wrapper">
+          <img src="Kshitij.jpeg" alt="Kshitij Kumar Soni" class="dev-avatar">
+          <span class="dev-status-dot"></span>
+        </div>
+        <div class="dev-card-body">
+          <div class="dev-role-badge dev-role-alt">Frontend Developer</div>
+          <h2 class="dev-name">Kshitij Kumar Soni</h2>
+          <p class="dev-desc">
+            Crafting the pixel-perfect, responsive UI that makes AskMITS beautiful and intuitive. Enthusiastic about blending design with machine learning.
+          </p>
+          <div class="dev-skills-section">
+            <h4 class="dev-skills-title">Skills</h4>
+            <div class="dev-tags">
+              <span class="dev-tag">HTML</span>
+              <span class="dev-tag">CSS</span>
+              <span class="dev-tag">JavaScript</span>
+              <span class="dev-tag">React</span>
+            </div>
+          </div>
+          <div class="dev-social-links">
+            <a href="https://github.com/kshitijsoni" target="_blank" class="social-btn github-btn" title="GitHub">
+              <i class="fa-brands fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/kshitijksoni/" target="_blank" class="social-btn linkedin-btn" title="LinkedIn">
+              <i class="fa-brands fa-linkedin"></i>
+              <span>LinkedIn</span>
+            </a>
+            <a href="mailto:kshitijkumarsoni30@gmail.com" class="social-btn email-btn" title="Email">
+              <i class="fa-solid fa-envelope"></i>
+              <span>Email</span>
+            </a>
+          </div>
         </div>
       </div>
 
     </div>
+
+    <!-- Footer note -->
+    <p class="dev-footer-note">
+      <i class="ph ph-heart" style="color: #ef4444;"></i>
+      Built with passion at <strong>MITS Gwalior</strong> · AskMITS v2.0
+    </p>
   </section>
 
   <script>
-    // Theme toggle like on home page
+    // Theme toggle
     const themeBtn = document.getElementById('themeToggle');
     const body = document.body;
+
+    // Restore saved theme
+    const saved = localStorage.getItem('askmits-theme') || 'light';
+    if (saved === 'dark') {
+      body.classList.replace('light', 'dark');
+      themeBtn.innerHTML = '<i class="ph ph-sun"></i>';
+    }
+
     themeBtn.addEventListener('click', () => {
       body.classList.toggle('dark');
       body.classList.toggle('light');
-      themeBtn.textContent = body.classList.contains('dark') ? '☀️' : '🌙';
+      const isDark = body.classList.contains('dark');
+      themeBtn.innerHTML = isDark ? '<i class="ph ph-sun"></i>' : '<i class="ph ph-moon"></i>';
+      localStorage.setItem('askmits-theme', isDark ? 'dark' : 'light');
     });
-  </script>
 
-  
+    // Navbar scroll effect
+    const navbar = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+  </script>
 </body>
 </html>

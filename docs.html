@@ -3,93 +3,218 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Docs | AskMITS</title>
+  <title>Documentation | AskMITS</title>
+  <meta name="description" content="Official documentation and usage guide for the AskMITS AI campus assistant.">
   <link rel="icon" type="image/png" href="mits-logo.png">
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a2e8f1c6a4.js" crossorigin="anonymous"></script>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css?v=2.7">
 </head>
-<body>
+<body class="light">
 
-  <!-- Navbar (same as index) -->
-  <nav class="navbar">
+  <!-- Background blobs -->
+  <div class="bg-shape shape-1"></div>
+  <div class="bg-shape shape-2"></div>
+  <div class="bg-shape shape-3"></div>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="mainNav">
     <div class="nav-left">
       <img src="mits-logo.png" alt="MITS Logo" class="nav-logo">
       <span class="nav-title">AskMITS</span>
     </div>
-    <ul class="nav-links">
-      <li><a href="index.html">Home</a></li>
-      <li><a href="developer.html">Developer</a></li>
-      <li><a href="docs.html" class="active">Docs</a></li>
-      <li><a href="contact.html">Contact</a></li>
-    </ul>
+    <div class="nav-center">
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="developer.html">Developer</a></li>
+        <li><a href="docs.html" class="active">Docs</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </div>
     <div class="nav-actions">
-      <button id="themeToggle" title="Toggle theme">🌙</button>
+      <button id="themeToggle" class="icon-btn" title="Toggle theme">
+        <i class="ph ph-moon"></i>
+      </button>
       <button class="btn-sign">Sign In</button>
     </div>
   </nav>
 
   <!-- Docs Header -->
-  <section class="docs-header">
-    <h1>📘 AskMITS Documentation</h1>
-    <p>Learn how to use the official virtual assistant of Madhav Institute of Technology & Science.</p>
+  <section class="dev-page-header">
+    <div class="dev-page-badge"><i class="ph ph-book-open-text"></i> Documentation</div>
+    <h1 class="dev-page-title">AskMITS <span>Guide</span></h1>
+    <p class="dev-page-subtitle">
+      Learn how to effectively interact with the official virtual assistant of Madhav Institute of Technology & Science.
+    </p>
   </section>
 
-  <!-- Docs Content -->
-  <section class="docs-content">
+  <!-- Docs Layout -->
+  <section class="docs-layout-wrapper">
+    
+    <!-- Left Sidebar -->
+    <aside class="docs-sidebar">
+      <nav class="docs-nav-menu">
+        <h3 class="docs-nav-title">On this page</h3>
+        <a href="#overview" class="docs-nav-link active">Overview</a>
+        <a href="#how-to-use" class="docs-nav-link">How to Use</a>
+        <a href="#supported-topics" class="docs-nav-link">Supported Topics</a>
+        <a href="#troubleshooting" class="docs-nav-link">Troubleshooting</a>
+      </nav>
+    </aside>
 
-    <div class="doc-section fade-up">
-      <h2><i class="fa-solid fa-lightbulb"></i> Overview</h2>
-      <p><strong>AskMITS</strong> is an AI-powered chatbot built exclusively for MITS students and visitors.  
-      It provides instant answers to common queries like admissions, placements, exams, events, and more.  
-      Developed by B.Tech CSE students to assist campus digitalization efforts.</p>
-    </div>
+    <!-- Main Content -->
+    <div class="docs-content-main">
+      <div class="docs-grid">
 
-    <div class="doc-section fade-up">
-      <h2><i class="fa-solid fa-graduation-cap"></i> How to Use AskMITS</h2>
-      <ul class="doc-list">
-        <li>💬 Type your question in the chat input box.</li>
-        <li>🚀 Click the <strong>Send</strong> button or press <strong>Enter</strong>.</li>
-        <li>🤖 Wait for AskMITS to reply with accurate MITS-related info.</li>
-        <li>📚 Use the “Quick Actions” chips for common queries.</li>
-      </ul>
-    </div>
+        <!-- Overview -->
+        <div id="overview" class="doc-card">
+        <div class="doc-card-header">
+          <div class="doc-icon-wrapper"><i class="ph ph-lightbulb"></i></div>
+          <h2>Overview</h2>
+        </div>
+        <p class="doc-text">
+          <strong>AskMITS</strong> is an AI-powered chatbot explicitly built for MITS students, faculty, and visitors. 
+          It acts as a centralized knowledge base, providing instant, accurate answers to common queries ranging from admissions and placements to exams and campus events. 
+          Developed by B.Tech CSE students, it aims to accelerate the digitalization of campus services.
+        </p>
+      </div>
 
-    <div class="doc-section fade-up">
-      <h2><i class="fa-solid fa-layer-group"></i> Supported Topics</h2>
-      <div class="topics-grid">
-        <div class="topic-card">🎓 Admissions</div>
-        <div class="topic-card">🏠 Hostels</div>
-        <div class="topic-card">📖 Library</div>
-        <div class="topic-card">💼 Placements</div>
-        <div class="topic-card">🧾 Exams</div>
-        <div class="topic-card">🏫 Departments</div>
-        <div class="topic-card">🕓 Timings</div>
-        <div class="topic-card">📅 Events</div>
+      <!-- How to Use -->
+      <div id="how-to-use" class="doc-card">
+        <div class="doc-card-header">
+          <div class="doc-icon-wrapper alt"><i class="ph ph-magic-wand"></i></div>
+          <h2>How to Use AskMITS</h2>
+        </div>
+        <ul class="doc-clean-list">
+          <li>
+            <i class="ph ph-keyboard"></i>
+            <span>Type your specific question into the chat input field at the bottom.</span>
+          </li>
+          <li>
+            <i class="ph ph-paper-plane-tilt"></i>
+            <span>Click the <strong>Send button</strong> or simply press <strong>Enter</strong>.</span>
+          </li>
+          <li>
+            <i class="ph ph-robot"></i>
+            <span>Allow a few moments for the AI to query the knowledge base and respond.</span>
+          </li>
+          <li>
+            <i class="ph ph-cards"></i>
+            <span>Use the preset <strong>Quick Action cards</strong> for instant, one-click answers.</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Supported Topics -->
+      <div id="supported-topics" class="doc-card full-width">
+        <div class="doc-card-header">
+          <div class="doc-icon-wrapper primary"><i class="ph ph-stack"></i></div>
+          <h2>Supported Topics</h2>
+        </div>
+        <div class="doc-topics-grid">
+          <div class="doc-topic-item"><i class="ph ph-student"></i> Admissions</div>
+          <div class="doc-topic-item"><i class="ph ph-buildings"></i> Hostels</div>
+          <div class="doc-topic-item"><i class="ph ph-books"></i> Library</div>
+          <div class="doc-topic-item"><i class="ph ph-briefcase"></i> Placements</div>
+          <div class="doc-topic-item"><i class="ph ph-exam"></i> Exams</div>
+          <div class="doc-topic-item"><i class="ph ph-bank"></i> Departments</div>
+          <div class="doc-topic-item"><i class="ph ph-clock"></i> Timings</div>
+          <div class="doc-topic-item"><i class="ph ph-calendar-star"></i> Events</div>
+        </div>
+      </div>
+
+      <!-- Guidelines & Feedback -->
+      <div id="troubleshooting" class="doc-card full-width bg-gradient">
+        <div class="doc-card-header">
+          <div class="doc-icon-wrapper"><i class="ph ph-info"></i></div>
+          <h2>Troubleshooting & Feedback</h2>
+        </div>
+        <p class="doc-text">
+          If AskMITS yields an incorrect, outdated, or incomplete response, please report the query via our Contact Page. 
+          The chatbot learns strictly from an administered dataset, meaning student feedback directly correlates to future accuracy improvements.
+        </p>
+        <div class="doc-action-row">
+          <a href="contact.html" class="btn-primary-glow btn-sm">
+            Report an Issue <i class="ph ph-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
       </div>
     </div>
-
-    <div class="doc-section fade-up">
-      <h2><i class="fa-solid fa-circle-question"></i> Troubleshooting & Feedback</h2>
-      <p>If AskMITS gives incorrect or incomplete information, please report it via our <a href="contact.html">Contact Page</a>.  
-      Your feedback helps us improve the chatbot’s accuracy and responses.</p>
-    </div>
-
   </section>
 
-  <footer>
-    <p>© 2025 AskMITS | Developed with ❤️ by Team AskMITS</p>
+  <!-- Footer -->
+  <footer class="app-footer">
+    <p>© 2025 AskMITS · Developed with <i class="ph-fill ph-heart" style="color: #ef4444; margin: 0 4px;"></i> by Team AskMITS</p>
   </footer>
 
   <script>
-    const fadeElements = document.querySelectorAll('.fade-up');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    });
-    fadeElements.forEach(el => observer.observe(el));
-  </script>
+    // Theme setup
+    const themeBtn = document.getElementById('themeToggle');
+    const body = document.body;
 
+    const saved = localStorage.getItem('askmits-theme') || 'light';
+    if (saved === 'dark') {
+      body.classList.replace('light', 'dark');
+      themeBtn.innerHTML = '<i class="ph ph-sun"></i>';
+    }
+
+    themeBtn.addEventListener('click', () => {
+      body.classList.toggle('dark');
+      body.classList.toggle('light');
+      const isDark = body.classList.contains('dark');
+      themeBtn.innerHTML = isDark ? '<i class="ph ph-sun"></i>' : '<i class="ph ph-moon"></i>';
+      localStorage.setItem('askmits-theme', isDark ? 'dark' : 'light');
+    });
+
+    // Navbar scroll
+    const navbar = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 10);
+    }, { passive: true });
+
+    // Sidebar active state logic
+    const sections = document.querySelectorAll('.doc-card');
+    const navLinks = document.querySelectorAll('.docs-nav-link');
+
+    // Robust Sidebar active state logic
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        // Calculate the absolute position
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        // 150px offset allows leeway for the sticky navbar and padding
+        if (window.scrollY >= sectionTop - 150) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (current && link.getAttribute('href').includes(current)) {
+          link.classList.add('active');
+        }
+      });
+    }, { passive: true });
+    
+    // Initial active link correction if anchored
+    if(window.location.hash) {
+      setTimeout(() => {
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === window.location.hash) {
+            link.classList.add('active');
+          }
+        });
+      }, 100);
+    }
+  </script>
 </body>
 </html>
